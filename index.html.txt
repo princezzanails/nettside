@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Min Enkle Side</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f8f8f8; color: #333; }
+    img { max-width: 100%; height: auto; margin-bottom: 1rem; }
+    a { display: block; margin: 0.5rem 0; color: #0066cc; }
+    form { margin-top: 2rem; }
+    input, textarea { width: 100%; margin: 0.5rem 0; padding: 0.5rem; }
+    button { padding: 0.5rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Velkommen til siden min</h1>
+
+  <p>Her er noen bilder:</p>
+  <img src="https://via.placeholder.com/600x300" alt="Bilde 1">
+  <img src="https://via.placeholder.com/600x300" alt="Bilde 2">
+
+  <p>Lenker:</p>
+  <a href="https://example.com" target="_blank">Lenke 1</a>
+  <a href="https://example.org" target="_blank">Lenke 2</a>
+  <a href="https://example.net" target="_blank">Lenke 3</a>
+
+  <h2>Kontakt meg</h2>
+  <form action="https://formsubmit.co/DITT@EPOST.NO" method="POST">
+    <input type="text" name="navn" placeholder="Navn" required>
+    <input type="email" name="epost" placeholder="E-post" required>
+    <textarea name="melding" placeholder="Skriv meldingen din her" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
