@@ -11,11 +11,9 @@
       background: #ffffff;
       color: #333;
     }
-
     img {
       height: auto;
     }
-
     a {
       display: block;
       margin: 0.5rem 0;
@@ -23,28 +21,21 @@
       text-decoration: none;
       font-weight: bold;
     }
-
     a i {
       margin-right: 0.5rem;
     }
-
     /* App-farger */
     .tiktok { color: #010101; }
     .instagram { color: #C13584; }
     .youtube { color: #FF0000; }
     .facebook { color: #1877F2; }
-
-    form {
-      margin-top: 1rem;
-    }
-
+    form { margin-top: 1rem; }
     input, textarea {
       width: 100%;
       margin: 0.5rem 0;
       padding: 0.5rem;
       box-sizing: border-box;
     }
-
     button {
       padding: 0.5rem 1rem;
       cursor: pointer;
@@ -58,51 +49,18 @@
     }
 
     .video-tekst-kontakt {
-      flex: 1;
-      min-width: 300px;
+      width: 30%;
+      min-width: 260px;
     }
 
-    .bildegalleri {
-      width: 120px;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .bildegalleri img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .bildegalleri img:nth-child(even) {
-      transform: rotate(2deg);
-    }
-
-    .bildegalleri img:nth-child(odd) {
-      transform: rotate(-2deg);
-    }
-
-    .bildegalleri img:hover {
-      transform: rotate(0deg) scale(1.05);
-    }
-
-    .sosiale-lenker {
-      margin-top: 1.5rem;
-    }
-
-    h2 {
-      margin-top: 2rem;
-    }
-
+    /* Video-scaling */
     .video-boks {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9-forhold */
+      padding-bottom: 56.25%;
       height: 0;
-      overflow: hidden;
+      transform: scale(0.30);
+      transform-origin: top left;
     }
-
     .video-boks iframe {
       position: absolute;
       top: 0;
@@ -112,19 +70,42 @@
       border: none;
     }
 
+    .bildegalleri {
+      width: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .bildegalleri img {
+      width: 120%;
+      max-width: 160px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
+    .bildegalleri img:nth-child(odd)  { transform: rotate(-2deg); }
+    .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
+
+    .sosiale-lenker { margin-top: 1.5rem; }
+    h2 { margin-top: 2rem; }
+
     @media (max-width: 768px) {
       .innhold-wrapper {
         flex-direction: column;
-        align-items: stretch;
       }
-
-      .bildegalleri {
+      .video-tekst-kontakt, .bildegalleri {
         width: 100%;
+      }
+      .video-boks {
+        transform: scale(1);
+      }
+      .bildegalleri {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
       }
-
       .bildegalleri img {
         width: 100px;
         margin: 0.5rem;
@@ -134,41 +115,36 @@
 </head>
 <body>
 
-  <!-- Logo -->
   <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%;">
 
-  <!-- Hovedinnhold -->
   <div class="innhold-wrapper">
 
-    <!-- Video og tekst og skjema -->
     <div class="video-tekst-kontakt">
 
-      <!-- YouTube-video -->
       <div class="video-boks">
-        <iframe src="https://www.youtube.com/embed/TGYLfWSgNL0"
-                title="YouTube Shorts player"
+        <!-- Nyeste video automatisk fra YouTube-kanalen -->
+        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=UCuy5ABJ4wsMbshDG5MlOMXQ"
+                title="Nyeste video fra kanalen"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
         </iframe>
       </div>
 
-      <!-- Sosiale lenker -->
       <div class="sosiale-lenker">
-        <a href="https://www.tiktok.com/@princezza_nails" target="_blank" class="tiktok">
-          <i class="fab fa-tiktok"></i> Tiktok - Princezza_nails
+        <a href="https://www.tiktok.com/@princezza_nails" class="tiktok" target="_blank">
+          <i class="fab fa-tiktok"></i> TikTok – princezza_nails
         </a>
-        <a href="https://www.instagram.com/princezza_nails/" target="_blank" class="instagram">
-          <i class="fab fa-instagram"></i> Instagram - Princezza_nails
+        <a href="https://www.instagram.com/princezza_nails/" class="instagram" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram – princezza_nails
         </a>
-        <a href="https://www.youtube.com/@Princezza_nails" target="_blank" class="youtube">
-          <i class="fab fa-youtube"></i> Youtube - Princezza_nails
+        <a href="https://www.youtube.com/@Princezza_nails" class="youtube" target="_blank">
+          <i class="fab fa-youtube"></i> YouTube – princezza_nails
         </a>
-        <a href="https://www.facebook.com/princezzanails" target="_blank" class="facebook">
-          <i class="fab fa-facebook"></i> Facebook - Princezza_nails
+        <a href="https://www.facebook.com/princezzanails" class="facebook" target="_blank">
+          <i class="fab fa-facebook"></i> Facebook – princezza_nails
         </a>
       </div>
 
-      <!-- Kontaktskjema -->
       <h2>Kontakt meg</h2>
       <form action="https://formsubmit.co/princezzanails@gmail.com" method="POST">
         <input type="text" name="navn" placeholder="Navn" required>
@@ -176,9 +152,9 @@
         <textarea name="melding" placeholder="Skriv meldingen din her" required></textarea>
         <button type="submit">Send</button>
       </form>
+
     </div>
 
-    <!-- Bilder ved siden av -->
     <div class="bildegalleri">
       <img src="tons.jpg" alt="Negldesign 1">
       <img src="Sommernegler.jpeg" alt="Negldesign 2">
@@ -186,6 +162,7 @@
       <img src="examen.jpeg" alt="Negldesign 4">
       <img src="easter.jpeg" alt="Negldesign 5">
     </div>
+
   </div>
 
 </body>
