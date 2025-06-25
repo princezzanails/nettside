@@ -149,9 +149,14 @@
 
     <div class="video-tekst-kontakt">
 
-      <div class="video-boks" id="videoContainer">
-        <!-- Video iframe settes inn her av JavaScript -->
-        <p>Laster video...</p>
+      <div class="video-boks">
+        <!-- Nyeste video automatisk fra YouTube-kanalen -->
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UUH7dKSkusr6GJQf5TciIyNw"
+          width="560" height="315" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
 
       <div class="knapper" style="margin-top: 1.5rem;">
@@ -184,37 +189,6 @@
     </div>
 
   </div>
-
-  <script>
-    // Hent siste video fra YouTube RSS via rss2json.com
-    // OBS: Kan være begrensninger / feil på rss2json siden, bruk med forsiktighet
-    const rssUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCdQQoJ28cjK3lf0RryuLmyw';
-    const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        if(data.status === 'ok' && data.items && data.items.length > 0) {
-          const videoId = data.items[0].link.split('v=')[1];
-          const iframe = document.createElement('iframe');
-          iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
-          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-          iframe.allowFullscreen = true;
-          iframe.title = "YouTube video player";
-
-          const videoContainer = document.getElementById('videoContainer');
-          videoContainer.innerHTML = '';
-          videoContainer.appendChild(iframe);
-        } else {
-          console.error('Fant ingen videoer i feeden');
-          document.getElementById('videoContainer').innerHTML = '<p>Kunne ikke laste video nå.</p>';
-        }
-      })
-      .catch(error => {
-        console.error('Feil ved henting av video:', error);
-        document.getElementById('videoContainer').innerHTML = '<p>Kunne ikke laste video nå.</p>';
-      });
-  </script>
 
 </body>
 </html>
