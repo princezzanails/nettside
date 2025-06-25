@@ -121,22 +121,32 @@
 
     <div class="video-tekst-kontakt">
 
-     <div style="text-align: center; margin-bottom: 2rem;">
-  <a href="https://www.tiktok.com/@princezza_nails" target="_blank" style="
-    display: inline-block;
-    background: linear-gradient(135deg, #000000, #ff0050);
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 10px;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  ">
-    🎥 Se siste video på TikTok
-  </a>
+      <div class="video-boks">
+  <iframe id="latestVideo" width="560" height="315"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
 </div>
+
+<script>
+  const channelId = "UCH7dKSkusr6GJQf5TciIyNw";
+  const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
+
+  fetch(reqURL)
+    .then(res => res.json())
+    .then(data => {
+      if (data.items && data.items.length > 0) {
+        const videoId = data.items[0].link.split("v=")[1];
+        document.getElementById("latestVideo").src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+      } else {
+        console.warn("Ingen videoer funnet i feeden.");
+      }
+    })
+    .catch(err => {
+      console.error("Feil ved henting av video:", err);
+    });
+</script>
+
+</iframe>
 
       </div>
 
