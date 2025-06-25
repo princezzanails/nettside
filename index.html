@@ -23,10 +23,37 @@
       display: block;
     }
 
+    /* NYTT: Om meg knapp container */
+    .ommeg-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .ommeg-knapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      background-color: #6a5acd; /* en lilla farge, kan endres */
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .ommeg-knapp:hover {
+      background-color: #5941a9;
+    }
+
     /* Video-boks */
     .video-boks {
       margin: 0 auto 2rem auto;
       max-width: 100%;
+      position: relative;
     }
 
     .video-boks iframe {
@@ -117,24 +144,53 @@
       cursor: pointer;
     }
 
-    /* Lightbox CSS */
-    #lightbox {
-      display: none;
+    /* Popup bilde container og styling */
+    .popup-bilde-container {
+      display: none; /* skjult som standard */
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
       justify-content: center;
       align-items: center;
       z-index: 9999;
     }
 
-    #lightbox img {
+    .popup-bilde-container.active {
+      display: flex;
+    }
+
+    .popup-bilde {
+      position: relative;
       max-width: 90%;
       max-height: 90%;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.7);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* NYTT: Kryss-knapp */
+    .popup-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 30px;
       cursor: pointer;
+      text-align: center;
+      color: #333;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+
+    .popup-close-btn:hover {
+      background: rgba(255,255,255,1);
     }
 
     @media (max-width: 768px) {
@@ -152,6 +208,13 @@
 <body>
 
   <img src="princezza logo.jpeg" alt="Logo" class="logo" />
+
+  <!-- NYTT: Om meg knapp under logoen -->
+  <div class="ommeg-container">
+    <a href="ommeg.html" class="ommeg-knapp" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-user"></i> Om meg
+    </a>
+  </div>
 
   <div class="video-boks">
     <!-- Video-spilleliste fra YouTube-kanalen -->
@@ -191,26 +254,40 @@
     <img src="easter.jpeg" alt="Negldesign 7" />
   </div>
 
-  <!-- Lightbox container -->
-  <div id="lightbox">
-    <img id="lightbox-img" src="" alt="Forstørret bilde" />
+  <!-- Popup bilde container -->
+  <div class="popup-bilde-container" id="popupBildeContainer">
+    <button class="popup-close-btn" id="popupCloseBtn" aria-label="Lukk bildet">&times;</button>
+    <img src="" alt="Forstørret bilde" class="popup-bilde" id="popupBilde" />
   </div>
 
   <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+    const popupBildeContainer = document.getElementById('popupBildeContainer');
+    const popupBilde = document.getElementById('popupBilde');
+    const popupCloseBtn = document.getElementById('popupCloseBtn');
 
     document.querySelectorAll('.bildegalleri img').forEach(img => {
-      img.style.cursor = 'pointer';
       img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
+        popupBilde.src = img.src;
+        popupBilde.alt = img.alt;
+        popupBildeContainer.classList.add('active');
       });
     });
 
-    lightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
+    popupCloseBtn.addEventListener('click', () => {
+      popupBildeContainer.classList.remove('active');
+      popupBilde.src = '';
+      popupBilde.alt = '';
+    });
+
+    // Lukk også hvis klikker utenfor bildet
+    popupBildeContainer.addEventListener('click', (e) => {
+      if(e.target === popupBildeContainer){
+        popupBildeContainer.classList.remove('active');
+        popupBilde.src = '';
+        popupBilde.alt = '';
+      }
     });
   </script>
+
 </body>
 </html>
