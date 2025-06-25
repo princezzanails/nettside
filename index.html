@@ -3,43 +3,33 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Princezza</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #fdf2f8;
-      color: #4a4a4a;
       margin: 0;
       padding: 0;
+      background-color: #f9f9f9;
       text-align: center;
     }
 
     header {
-      background-color: #ffe4e6;
-      padding: 20px;
+      background-color: #000000;
+      color: white;
+      padding: 20px 0;
     }
 
     header img {
-      max-width: 250px;
-      height: auto;
-    }
-
-    h1 {
-      margin: 20px 0;
-      font-size: 2em;
-      color: #d63384;
-    }
-
-    .video-boks {
-      margin: 30px auto;
-      max-width: 90%;
+      max-height: 120px;
     }
 
     .video-boks iframe {
-      width: 100%;
-      max-width: 900px;
-      height: 500px;
-      border: none;
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      margin: 30px auto;
+      display: block;
     }
 
     .bildegalleri {
@@ -65,62 +55,57 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
-    .lenker {
-      margin: 40px 0 20px 0;
+    .knapper {
+      margin: 40px 0 20px;
     }
 
-    .lenker a {
+    .knapper a {
       display: inline-block;
       margin: 10px;
       padding: 12px 25px;
-      background-color: #d63384;
+      background-color: #000000;
       color: white;
       text-decoration: none;
       border-radius: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
+      font-size: 16px;
+      transition: background-color 0.3s;
     }
 
-    .lenker a:hover {
-      background-color: #ad2167;
+    .knapper a:hover {
+      background-color: #333333;
     }
 
     .kontakt-knapp {
-      display: inline-block;
       margin-top: 40px;
-      padding: 12px 30px;
-      background-color: #fff;
-      color: #d63384;
-      border: 2px solid #d63384;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: all 0.3s ease;
     }
 
-    .kontakt-knapp:hover {
-      background-color: #d63384;
+    .kontakt-knapp a {
+      display: inline-block;
+      padding: 14px 30px;
+      background-color: #4267B2;
       color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 18px;
+      transition: background-color 0.3s;
     }
 
-    footer {
-      margin: 40px 0;
-      color: #888;
-      font-size: 0.9em;
+    .kontakt-knapp a:hover {
+      background-color: #365899;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <img src="logo.png" alt="Princezza logo">
-    <h1>Velkommen til Princezza</h1>
+    <img src="bilder/logo.png" alt="Princezza logo">
   </header>
 
   <div class="video-boks">
     <!-- Nyeste video automatisk fra YouTube-kanalen -->
     <iframe
       src="https://www.youtube.com/embed/videoseries?list=UUH7dKSkusr6GJQf5TciIyNw"
+      frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
@@ -131,22 +116,19 @@
     <img src="bilder/bilde2.jpg" alt="Bilde 2">
     <img src="bilder/bilde3.jpg" alt="Bilde 3">
     <img src="bilder/bilde4.jpg" alt="Bilde 4">
-    <!-- Legg til flere bilder her -->
+    <img src="bilder/bilde5.jpg" alt="Bilde 5">
+    <img src="bilder/bilde6.jpg" alt="Bilde 6">
   </div>
 
-  <div class="lenker">
+  <div class="knapper">
+    <a href="https://www.youtube.com/@princezza" target="_blank">YouTube</a>
     <a href="https://www.instagram.com/princezza.no" target="_blank">Instagram</a>
     <a href="https://www.tiktok.com/@princezza.no" target="_blank">TikTok</a>
-    <a href="https://www.youtube.com/@princezza" target="_blank">YouTube</a>
   </div>
 
-  <div>
-    <a class="kontakt-knapp" href="https://m.me/princezza.no" target="_blank">Kontakt meg</a>
+  <div class="kontakt-knapp">
+    <a href="https://m.me/princezza.no" target="_blank">Kontakt meg</a>
   </div>
-
-  <footer>
-    <p>© 2025 Princezza. Alle rettigheter reservert.</p>
-  </footer>
 </body>
 
 </html>
