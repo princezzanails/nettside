@@ -109,15 +109,14 @@
     .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
 .bildegalleri img:nth-child(odd) { transform: rotate(-2deg); }
 
-.bildegalleri img:hover {
-  transform: scale(1.1) rotate(0deg);
-  z-index: 1;
+.bildegalleri img:hover,
+.bildegalleri img:active {
+  transform: scale(1.4) rotate(0deg);
+  z-index: 10;
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
-    .bildegalleri img:hover {
-  transform: scale(1.1) rotate(0deg);
-  z-index: 1;
-}
 
 
     @media (max-width: 768px) {
