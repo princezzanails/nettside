@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Princezza_nails</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: sans-serif;
@@ -13,40 +13,32 @@
     }
     img {
       height: auto;
-      max-width: 100%;
     }
-    a.button {
-      display: inline-block;
-      padding: 0.5rem 1rem;
+    a {
+      display: block;
       margin: 0.5rem 0;
-      font-weight: bold;
-      color: white;
+      color: inherit;
       text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
-    a.tiktok { background-color: #010101; }
-    a.tiktok:hover { background-color: #333; }
-    a.instagram { background-color: #C13584; }
-    a.instagram:hover { background-color: #a32f6e; }
-    a.youtube { background-color: #FF0000; }
-    a.youtube:hover { background-color: #cc0000; }
-    a.facebook { background-color: #1877F2; }
-    a.facebook:hover { background-color: #135bcc; }
-    a.kontakt-knapp {
-      background-color: #444;
-      margin-top: 1.5rem;
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
       font-weight: bold;
-      color: #fff;
-      text-align: center;
     }
-    a.kontakt-knapp:hover {
-      background-color: #222;
+    a i {
+      margin-right: 0.5rem;
+    }
+    /* App-farger */
+    .tiktok { color: #010101; }
+    .instagram { color: #C13584; }
+    .youtube { color: #FF0000; }
+    .facebook { color: #1877F2; }
+    form { margin-top: 1rem; }
+    input, textarea {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
     }
 
     .innhold-wrapper {
@@ -61,11 +53,13 @@
       min-width: 260px;
     }
 
+    /* Video-scaling */
     .video-boks {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
-      overflow: hidden;
+      transform: scale(1);
+      transform-origin: top left;
     }
     .video-boks iframe {
       position: absolute;
@@ -94,12 +88,18 @@
     .bildegalleri img:nth-child(odd)  { transform: rotate(-2deg); }
     .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
 
+    .sosiale-lenker { margin-top: 1.5rem; }
+    h2 { margin-top: 2rem; }
+
     @media (max-width: 768px) {
       .innhold-wrapper {
         flex-direction: column;
       }
       .video-tekst-kontakt, .bildegalleri {
         width: 100%;
+      }
+      .video-boks {
+        transform: scale(1);
       }
       .bildegalleri {
         flex-direction: row;
@@ -115,17 +115,63 @@
 </head>
 <body>
 
-  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%; margin-bottom: 2rem;" />
+  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%;">
 
   <div class="innhold-wrapper">
 
     <div class="video-tekst-kontakt">
 
       <div class="video-boks">
-        <iframe
-          id="latestVideo"
-          src=""
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="Siste YouTube-video"
-        ></iframe>
+        <iframe id="latestVideo" width="560" height="315"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+      <script>
+        const channelId = "UCH7dKSkusr6GJQf5TciIyNw";
+        const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
+
+        fetch(reqURL)
+          .then(res => res.json())
+          .then(data => {
+            if (data.items && data.items.length > 0) {
+              const videoId = data.items[0].link.split("v=")[1];
+              document.getElementById("latestVideo").src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+            } else {
+              console.warn("Ingen videoer funnet i feeden.");
+            }
+          })
+          .catch(err => {
+            console.error("Feil ved henting av video:", err);
+          });
+      </script>
+
+      <div class="sosiale-lenker">
+        <a href="https://www.tiktok.com/@princezza_nails" class="tiktok" target="_blank">
+          <i class="fab fa-tiktok"></i> TikTok – princezza_nails
+        </a>
+        <a href="https://www.instagram.com/princezza_nails/" class="instagram" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram – princezza_nails
+        </a>
+        <a href="https://www.youtube.com/@Princezza_nails" class="youtube" target="_blank">
+          <i class="fab fa-youtube"></i> YouTube – princezza_nails
+        </a>
+        <a href="https://www.facebook.com/princezzanails" class="facebook" target="_blank">
+          <i class="fab fa-facebook"></i> Facebook – princezza_nails
+        </a>
+      </div>
+
+    </div>
+
+    <div class="bildegalleri">
+      <img src="tons.jpg" alt="Negldesign 1">
+      <img src="Sommernegler.jpeg" alt="Negldesign 2">
+      <img src="Duck.png" alt="Negldesign 3">
+      <img src="examen.jpeg" alt="Negldesign 4">
+      <img src="easter.jpeg" alt="Negldesign 5">
+    </div>
+
+  </div>
+
+</body>
+</html>
