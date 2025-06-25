@@ -15,17 +15,52 @@
       height: auto;
       max-width: 100%;
     }
+    a.button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    a.tiktok { background-color: #010101; }
+    a.tiktok:hover { background-color: #333; }
+    a.instagram { background-color: #C13584; }
+    a.instagram:hover { background-color: #a32f6e; }
+    a.youtube { background-color: #FF0000; }
+    a.youtube:hover { background-color: #cc0000; }
+    a.facebook { background-color: #1877F2; }
+    a.facebook:hover { background-color: #135bcc; }
+    a.kontakt-knapp {
+      background-color: #444;
+      margin-top: 1.5rem;
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+    }
+    a.kontakt-knapp:hover {
+      background-color: #222;
+    }
+
     .innhold-wrapper {
       display: flex;
       flex-wrap: nowrap;
       gap: 2rem;
       align-items: flex-start;
     }
+
     .video-tekst-kontakt {
       width: 30%;
       min-width: 260px;
     }
-    /* Video container with 16:9 ratio */
+
     .video-boks {
       position: relative;
       padding-bottom: 56.25%;
@@ -40,8 +75,9 @@
       height: 100%;
       border: none;
     }
-    /* Bildegalleri styling */
+
     .bildegalleri {
+      width: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -57,50 +93,39 @@
     .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
     .bildegalleri img:nth-child(odd)  { transform: rotate(-2deg); }
     .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
-    h2 {
-      margin-top: 2rem;
-    }
 
-    /* Sosiale lenker som knapper */
-    .sosiale-lenker {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
+    @media (max-width: 768px) {
+      .innhold-wrapper {
+        flex-direction: column;
+      }
+      .video-tekst-kontakt, .bildegalleri {
+        width: 100%;
+      }
+      .bildegalleri {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .bildegalleri img {
+        width: 100px;
+        margin: 0.5rem;
+      }
     }
-    .sosiale-lenker a {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      max-width: 280px;
-    }
-    .sosiale-lenker a i {
-      font-size: 1.4rem;
-    }
-    .tiktok {
-      background-color: #010101;
-    }
-    .tiktok:hover {
-      background-color: #333333;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.35);
-    }
-    .instagram {
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    }
-    .instagram:hover {
-      filter: brightness(1.1);
-      box-shadow: 0 5px 12px rgba(204, 35, 136, 0.6);
-    }
-    .youtube {
-      background-color: #FF0000;
-    }
-    .youtube:hover {
-      back
+  </style>
+</head>
+<body>
+
+  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%; margin-bottom: 2rem;" />
+
+  <div class="innhold-wrapper">
+
+    <div class="video-tekst-kontakt">
+
+      <div class="video-boks">
+        <iframe
+          id="latestVideo"
+          src=""
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="Siste YouTube-video"
+        ></iframe>
