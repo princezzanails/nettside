@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Princezza_nails</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       font-family: sans-serif;
@@ -25,12 +25,23 @@
       margin-right: 0.5rem;
     }
     /* App-farger */
-    .tiktok { color: #010101; }
-    .instagram { color: #C13584; }
-    .youtube { color: #FF0000; }
-    .facebook { color: #1877F2; }
-    form { margin-top: 1rem; }
-    input, textarea {
+    .tiktok {
+      color: #010101;
+    }
+    .instagram {
+      color: #C13584;
+    }
+    .youtube {
+      color: #FF0000;
+    }
+    .facebook {
+      color: #1877F2;
+    }
+    form {
+      margin-top: 1rem;
+    }
+    input,
+    textarea {
       width: 100%;
       margin: 0.5rem 0;
       padding: 0.5rem;
@@ -58,7 +69,6 @@
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
-      transform: scale(1);
       transform-origin: top left;
     }
     .video-boks iframe {
@@ -81,21 +91,32 @@
       width: 120%;
       max-width: 160px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
     }
-    .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
-    .bildegalleri img:nth-child(odd)  { transform: rotate(-2deg); }
-    .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
+    .bildegalleri img:nth-child(even) {
+      transform: rotate(2deg);
+    }
+    .bildegalleri img:nth-child(odd) {
+      transform: rotate(-2deg);
+    }
+    .bildegalleri img:hover {
+      transform: rotate(0deg) scale(1.05);
+    }
 
-    .sosiale-lenker { margin-top: 1.5rem; }
-    h2 { margin-top: 2rem; }
+    .sosiale-lenker {
+      margin-top: 1.5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+    }
 
     @media (max-width: 768px) {
       .innhold-wrapper {
         flex-direction: column;
       }
-      .video-tekst-kontakt, .bildegalleri {
+      .video-tekst-kontakt,
+      .bildegalleri {
         width: 100%;
       }
       .video-boks {
@@ -114,76 +135,77 @@
   </style>
 </head>
 <body>
-
-  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%;">
+  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%" />
 
   <div class="innhold-wrapper">
-
     <div class="video-tekst-kontakt">
-
       <div class="video-boks">
-  <iframe id="latestVideo" width="560" height="315"
-    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
-</div>
-
-<script>
-  const channelId = "UCH7dKSkusr6GJQf5TciIyNw";
-  const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
-
-  fetch(reqURL)
-    .then(res => res.json())
-    .then(data => {
-      if (data.items && data.items.length > 0) {
-        const videoId = data.items[0].link.split("v=")[1];
-        document.getElementById("latestVideo").src = `https://www.youtube.com/embed/${videoId}?rel=0`;
-      } else {
-        console.warn("Ingen videoer funnet i feeden.");
-      }
-    })
-    .catch(err => {
-      console.error("Feil ved henting av video:", err);
-    });
-</script>
-
-</iframe>
-
+        <iframe
+          id="latestVideo"
+          width="560"
+          height="315"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </div>
 
       <div class="sosiale-lenker">
-        <a href="https://www.tiktok.com/@princezza_nails" class="tiktok" target="_blank">
-          <i class="fab fa-tiktok"></i> TikTok – princezza_nails
-        </a>
-        <a href="https://www.instagram.com/princezza_nails/" class="instagram" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram – princezza_nails
-        </a>
-        <a href="https://www.youtube.com/@Princezza_nails" class="youtube" target="_blank">
-          <i class="fab fa-youtube"></i> YouTube – princezza_nails
-        </a>
-        <a href="https://www.facebook.com/princezzanails" class="facebook" target="_blank">
-          <i class="fab fa-facebook"></i> Facebook – princezza_nails
-        </a>
+        <a href="https://www.tiktok.com/@princezza_nails" class="tiktok" target="_blank"
+          ><i class="fab fa-tiktok"></i> TikTok – princezza_nails</a
+        >
+        <a href="https://www.instagram.com/princezza_nails/" class="instagram" target="_blank"
+          ><i class="fab fa-instagram"></i> Instagram – princezza_nails</a
+        >
+        <a href="https://www.youtube.com/@Princezza_nails" class="youtube" target="_blank"
+          ><i class="fab fa-youtube"></i> YouTube – princezza_nails</a
+        >
+        <a href="https://www.facebook.com/princezzanails" class="facebook" target="_blank"
+          ><i class="fab fa-facebook"></i> Facebook – princezza_nails</a
+        >
       </div>
 
       <h2>Kontakt meg</h2>
       <form action="https://formsubmit.co/princezzanails@gmail.com" method="POST">
-        <input type="text" name="navn" placeholder="Navn" required>
-        <input type="email" name="epost" placeholder="E-post" required>
+        <input type="text" name="navn" placeholder="Navn" required />
+        <input type="email" name="epost" placeholder="E-post" required />
         <textarea name="melding" placeholder="Skriv meldingen din her" required></textarea>
         <button type="submit">Send</button>
       </form>
-
     </div>
 
     <div class="bildegalleri">
-      <img src="tons.jpg" alt="Negldesign 1">
-      <img src="Sommernegler.jpeg" alt="Negldesign 2">
-      <img src="Duck.png" alt="Negldesign 3">
-      <img src="examen.jpeg" alt="Negldesign 4">
-      <img src="easter.jpeg" alt="Negldesign 5">
+      <img src="tons.jpg" alt="Negldesign 1" />
+      <img src="Sommernegler.jpeg" alt="Negldesign 2" />
+      <img src="Duck.png" alt="Negldesign 3" />
+      <img src="examen.jpeg" alt="Negldesign 4" />
+      <img src="easter.jpeg" alt="Negldesign 5" />
     </div>
-
   </div>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const channelId = "UCH7dKSkusr6GJQf5TciIyNw";
+      const rssFeedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
+        rssFeedUrl
+      )}`;
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.items && data.items.length > 0) {
+            const videoId = data.items[0].link.split("v=")[1];
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
+            document.getElementById("latestVideo").src = embedUrl;
+          } else {
+            console.warn("Ingen videoer funnet i feeden.");
+          }
+        })
+        .catch((error) => {
+          console.error("Feil ved henting av video:", error);
+        });
+    });
+  </script>
 </body>
 </html>
