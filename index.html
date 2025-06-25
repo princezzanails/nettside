@@ -13,63 +13,24 @@
     }
     img {
       height: auto;
+      max-width: 100%;
     }
-    a {
-      display: block;
-      margin: 0.5rem 0;
-      color: inherit;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    a i {
-      margin-right: 0.5rem;
-    }
-    /* App-farger */
-    .tiktok {
-      color: #010101;
-    }
-    .instagram {
-      color: #C13584;
-    }
-    .youtube {
-      color: #FF0000;
-    }
-    .facebook {
-      color: #1877F2;
-    }
-    form {
-      margin-top: 1rem;
-    }
-    input,
-    textarea {
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      box-sizing: border-box;
-    }
-    button {
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-
     .innhold-wrapper {
       display: flex;
       flex-wrap: nowrap;
       gap: 2rem;
       align-items: flex-start;
     }
-
     .video-tekst-kontakt {
       width: 30%;
       min-width: 260px;
     }
-
-    /* Video-scaling */
+    /* Video container with 16:9 ratio */
     .video-boks {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
-      transform-origin: top left;
+      overflow: hidden;
     }
     .video-boks iframe {
       position: absolute;
@@ -79,9 +40,8 @@
       height: 100%;
       border: none;
     }
-
+    /* Bildegalleri styling */
     .bildegalleri {
-      width: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -91,121 +51,56 @@
       width: 120%;
       max-width: 160px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
     }
-    .bildegalleri img:nth-child(even) {
-      transform: rotate(2deg);
-    }
-    .bildegalleri img:nth-child(odd) {
-      transform: rotate(-2deg);
-    }
-    .bildegalleri img:hover {
-      transform: rotate(0deg) scale(1.05);
-    }
-
-    .sosiale-lenker {
-      margin-top: 1.5rem;
-    }
+    .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
+    .bildegalleri img:nth-child(odd)  { transform: rotate(-2deg); }
+    .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
     h2 {
       margin-top: 2rem;
     }
 
-    @media (max-width: 768px) {
-      .innhold-wrapper {
-        flex-direction: column;
-      }
-      .video-tekst-kontakt,
-      .bildegalleri {
-        width: 100%;
-      }
-      .video-boks {
-        transform: scale(1);
-      }
-      .bildegalleri {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .bildegalleri img {
-        width: 100px;
-        margin: 0.5rem;
-      }
+    /* Sosiale lenker som knapper */
+    .sosiale-lenker {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
     }
-  </style>
-</head>
-<body>
-  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%" />
-
-  <div class="innhold-wrapper">
-    <div class="video-tekst-kontakt">
-      <div class="video-boks">
-        <iframe
-          id="latestVideo"
-          width="560"
-          height="315"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-
-      <div class="sosiale-lenker">
-        <a href="https://www.tiktok.com/@princezza_nails" class="tiktok" target="_blank"
-          ><i class="fab fa-tiktok"></i> TikTok – princezza_nails</a
-        >
-        <a href="https://www.instagram.com/princezza_nails/" class="instagram" target="_blank"
-          ><i class="fab fa-instagram"></i> Instagram – princezza_nails</a
-        >
-        <a href="https://www.youtube.com/@Princezza_nails" class="youtube" target="_blank"
-          ><i class="fab fa-youtube"></i> YouTube – princezza_nails</a
-        >
-        <a href="https://www.facebook.com/princezzanails" class="facebook" target="_blank"
-          ><i class="fab fa-facebook"></i> Facebook – princezza_nails</a
-        >
-      </div>
-
-      <h2>Kontakt meg</h2>
-      <form action="https://formsubmit.co/princezzanails@gmail.com" method="POST">
-        <input type="text" name="navn" placeholder="Navn" required />
-        <input type="email" name="epost" placeholder="E-post" required />
-        <textarea name="melding" placeholder="Skriv meldingen din her" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </div>
-
-    <div class="bildegalleri">
-      <img src="tons.jpg" alt="Negldesign 1" />
-      <img src="Sommernegler.jpeg" alt="Negldesign 2" />
-      <img src="Duck.png" alt="Negldesign 3" />
-      <img src="examen.jpeg" alt="Negldesign 4" />
-      <img src="easter.jpeg" alt="Negldesign 5" />
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const channelId = "UCH7dKSkusr6GJQf5TciIyNw";
-      const rssFeedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
-        rssFeedUrl
-      )}`;
-
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.items && data.items.length > 0) {
-            const videoId = data.items[0].link.split("v=")[1];
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
-            document.getElementById("latestVideo").src = embedUrl;
-          } else {
-            console.warn("Ingen videoer funnet i feeden.");
-          }
-        })
-        .catch((error) => {
-          console.error("Feil ved henting av video:", error);
-        });
-    });
-  </script>
-</body>
-</html>
+    .sosiale-lenker a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      max-width: 280px;
+    }
+    .sosiale-lenker a i {
+      font-size: 1.4rem;
+    }
+    .tiktok {
+      background-color: #010101;
+    }
+    .tiktok:hover {
+      background-color: #333333;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.35);
+    }
+    .instagram {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+    .instagram:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 5px 12px rgba(204, 35, 136, 0.6);
+    }
+    .youtube {
+      background-color: #FF0000;
+    }
+    .youtube:hover {
+      back
