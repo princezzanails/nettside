@@ -1,133 +1,124 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Princezza_nails</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <title>Princezza</title>
   <style>
     body {
-      font-family: sans-serif;
-      padding: 2rem;
-      background: #fff;
-      color: #333;
-      max-width: 1000px;
-      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      background-color: #fdf2f8;
+      color: #4a4a4a;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
 
-    /* Logo */
-    .logo {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto 2rem auto;
-      display: block;
+    header {
+      background-color: #ffe4e6;
+      padding: 20px;
     }
 
-    /* Video-boks */
+    header img {
+      max-width: 250px;
+      height: auto;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: 2em;
+      color: #d63384;
+    }
+
     .video-boks {
-      margin: 0 auto 2rem auto;
-      max-width: 100%;
+      margin: 30px auto;
+      max-width: 90%;
     }
 
     .video-boks iframe {
-      width: 560px;
-      height: 315px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
       border: none;
     }
 
-    /* Knapper */
-    .knapper {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .knapp {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      font-weight: 600;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
-
-    .knapp i {
-      font-size: 1.3rem;
-    }
-
-    .tiktok { background-color: #000; }
-    .tiktok:hover { background-color: #222; }
-
-    .instagram {
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
-    .instagram:hover { filter: brightness(1.1); }
-
-    .youtube { background-color: #FF0000; }
-    .youtube:hover { background-color: #cc0000; }
-
-    .facebook { background-color: #1877F2; }
-    .facebook:hover { background-color: #145dbf; }
-
-    .messenger {
-      background-color: #0084FF;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 1.1rem;
-    }
-    .messenger:hover {
-      background-color: #006fdd;
-    }
-
-    /* Bildegalleri */
     .bildegalleri {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
+      gap: 15px;
+      padding: 20px;
     }
 
     .bildegalleri img {
-      width: 140px;
+      height: 160px;
+      width: auto;
       border-radius: 8px;
+      object-fit: cover;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
-    .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
-    .bildegalleri img:nth-child(odd) { transform: rotate(-2deg); }
-    .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
+    .bildegalleri img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
 
-    @media (max-width: 768px) {
-      .video-boks iframe {
-        width: 100%;
-        height: auto;
-      }
+    .lenker {
+      margin: 40px 0 20px 0;
+    }
 
-      .bildegalleri img {
-        width: 100px;
-      }
+    .lenker a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background-color: #d63384;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .lenker a:hover {
+      background-color: #ad2167;
+    }
+
+    .kontakt-knapp {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 30px;
+      background-color: #fff;
+      color: #d63384;
+      border: 2px solid #d63384;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .kontakt-knapp:hover {
+      background-color: #d63384;
+      color: white;
+    }
+
+    footer {
+      margin: 40px 0;
+      color: #888;
+      font-size: 0.9em;
     }
   </style>
 </head>
-<body>
 
-  <img src="princezza logo.jpeg" alt="Logo" class="logo" />
+<body>
+  <header>
+    <img src="logo.png" alt="Princezza logo">
+    <h1>Velkommen til Princezza</h1>
+  </header>
 
   <div class="video-boks">
-    <!-- Video-spilleliste fra YouTube-kanalen -->
+    <!-- Nyeste video automatisk fra YouTube-kanalen -->
     <iframe
       src="https://www.youtube.com/embed/videoseries?list=UUH7dKSkusr6GJQf5TciIyNw"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -135,34 +126,27 @@
     </iframe>
   </div>
 
-  <div class="knapper">
-    <a href="https://www.tiktok.com/@princezza_nails" target="_blank" class="knapp tiktok" rel="noopener noreferrer">
-      <i class="fab fa-tiktok"></i> TikTok
-    </a>
-    <a href="https://www.instagram.com/princezza_nails/" target="_blank" class="knapp instagram" rel="noopener noreferrer">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a href="https://www.youtube.com/@Princezza_nails" target="_blank" class="knapp youtube" rel="noopener noreferrer">
-      <i class="fab fa-youtube"></i> YouTube
-    </a>
-    <a href="https://www.facebook.com/princezzanails" target="_blank" class="knapp facebook" rel="noopener noreferrer">
-      <i class="fab fa-facebook"></i> Facebook
-    </a>
-  </div>
-
-  <a href="https://m.me/princezzanails" target="_blank" class="knapp messenger" style="margin-top: 2rem; display: inline-block;">
-    <i class="fab fa-facebook-messenger"></i> Kontakt meg
-  </a>
-
   <div class="bildegalleri">
-    <img src="tons2.jpg" alt="Negldesign 1" />
-    <img src="tons1.jpg" alt="Negldesign 2" />
-    <img src="Sommernegler.jpeg" alt="Negldesign 3" />
-    <img src="examen2.jpeg" alt="Negldesign 4" />
-    <img src="examen stiletto.jpeg" alt="Negldesign 5" />
-    <img src="duckyeah.jpeg" alt="Negldesign 6" />
-    <img src="easter.jpeg" alt="Negldesign 7" />
+    <img src="bilder/bilde1.jpg" alt="Bilde 1">
+    <img src="bilder/bilde2.jpg" alt="Bilde 2">
+    <img src="bilder/bilde3.jpg" alt="Bilde 3">
+    <img src="bilder/bilde4.jpg" alt="Bilde 4">
+    <!-- Legg til flere bilder her -->
   </div>
 
+  <div class="lenker">
+    <a href="https://www.instagram.com/princezza.no" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@princezza.no" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/@princezza" target="_blank">YouTube</a>
+  </div>
+
+  <div>
+    <a class="kontakt-knapp" href="https://m.me/princezza.no" target="_blank">Kontakt meg</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Princezza. Alle rettigheter reservert.</p>
+  </footer>
 </body>
+
 </html>
