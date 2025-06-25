@@ -1,77 +1,108 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Princezza_nails</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       font-family: sans-serif;
       padding: 2rem;
-      background: #ffffff;
+      background: #fff;
       color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     img {
       height: auto;
     }
-    a {
-      display: block;
-      margin: 0.5rem 0;
-      color: inherit;
-      text-decoration: none;
-      font-weight: bold;
+    /* Knapper */
+    .knapper {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    a i {
-      margin-right: 0.5rem;
-    }
-    /* App-farger */
-    .tiktok { color: #010101; }
-    .instagram { color: #C13584; }
-    .youtube { color: #FF0000; }
-    .facebook { color: #1877F2; }
-    form { margin-top: 1rem; }
-    input, textarea {
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      box-sizing: border-box;
-    }
-    button {
-      padding: 0.5rem 1rem;
+    .knapp {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
       cursor: pointer;
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    .knapp i {
+      font-size: 1.3rem;
+    }
+    .tiktok {
+      background-color: #000;
+    }
+    .tiktok:hover {
+      background-color: #222;
+    }
+    .instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+    .instagram:hover {
+      filter: brightness(1.1);
+    }
+    .youtube {
+      background-color: #FF0000;
+    }
+    .youtube:hover {
+      background-color: #cc0000;
+    }
+    .facebook {
+      background-color: #1877F2;
+    }
+    .facebook:hover {
+      background-color: #145dbf;
+    }
+    .messenger {
+      background-color: #0084FF;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 1.1rem;
+    }
+    .messenger:hover {
+      background-color: #006fdd;
     }
 
+    /* Layout */
     .innhold-wrapper {
       display: flex;
       flex-wrap: nowrap;
       gap: 2rem;
       align-items: flex-start;
+      margin-top: 1rem;
     }
-
     .video-tekst-kontakt {
       width: 30%;
-      min-width: 260px;
+      min-width: 280px;
     }
-
-    /* Video-scaling */
     .video-boks {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
-      transform: scale(1);
-      transform-origin: top left;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .video-boks iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border: none;
     }
 
     .bildegalleri {
-      width: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -85,11 +116,8 @@
       transition: transform 0.3s ease;
     }
     .bildegalleri img:nth-child(even) { transform: rotate(2deg); }
-    .bildegalleri img:nth-child(odd)  { transform: rotate(-2deg); }
+    .bildegalleri img:nth-child(odd) { transform: rotate(-2deg); }
     .bildegalleri img:hover { transform: rotate(0deg) scale(1.05); }
-
-    .sosiale-lenker { margin-top: 1.5rem; }
-    h2 { margin-top: 2rem; }
 
     @media (max-width: 768px) {
       .innhold-wrapper {
@@ -97,9 +125,6 @@
       }
       .video-tekst-kontakt, .bildegalleri {
         width: 100%;
-      }
-      .video-boks {
-        transform: scale(1);
       }
       .bildegalleri {
         flex-direction: row;
@@ -110,68 +135,86 @@
         width: 100px;
         margin: 0.5rem;
       }
+      .knapper {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%;">
+  <img src="princezza logo.jpeg" alt="Logo" style="max-width: 50%; display: block; margin-bottom: 1rem;" />
 
   <div class="innhold-wrapper">
 
     <div class="video-tekst-kontakt">
 
-      <div class="video-boks">
-        <iframe id="latestVideo" width="560" height="315"
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+      <div class="video-boks" id="videoContainer">
+        <!-- Video iframe settes inn her av JavaScript -->
+        <p>Laster video...</p>
       </div>
 
-      <script>
-        const channelId = "UCH7dKSkusr6GJQf5TciIyNw";
-        const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
-
-        fetch(reqURL)
-          .then(res => res.json())
-          .then(data => {
-            if (data.items && data.items.length > 0) {
-              const videoId = data.items[0].link.split("v=")[1];
-              document.getElementById("latestVideo").src = `https://www.youtube.com/embed/${videoId}?rel=0`;
-            } else {
-              console.warn("Ingen videoer funnet i feeden.");
-            }
-          })
-          .catch(err => {
-            console.error("Feil ved henting av video:", err);
-          });
-      </script>
-
-      <div class="sosiale-lenker">
-        <a href="https://www.tiktok.com/@princezza_nails" class="tiktok" target="_blank">
-          <i class="fab fa-tiktok"></i> TikTok – princezza_nails
+      <div class="knapper" style="margin-top: 1.5rem;">
+        <a href="https://www.tiktok.com/@princezza_nails" target="_blank" class="knapp tiktok" rel="noopener noreferrer">
+          <i class="fab fa-tiktok"></i> TikTok
         </a>
-        <a href="https://www.instagram.com/princezza_nails/" class="instagram" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram – princezza_nails
+        <a href="https://www.instagram.com/princezza_nails/" target="_blank" class="knapp instagram" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i> Instagram
         </a>
-        <a href="https://www.youtube.com/@Princezza_nails" class="youtube" target="_blank">
-          <i class="fab fa-youtube"></i> YouTube – princezza_nails
+        <a href="https://www.youtube.com/@Princezza_nails" target="_blank" class="knapp youtube" rel="noopener noreferrer">
+          <i class="fab fa-youtube"></i> YouTube
         </a>
-        <a href="https://www.facebook.com/princezzanails" class="facebook" target="_blank">
-          <i class="fab fa-facebook"></i> Facebook – princezza_nails
+        <a href="https://www.facebook.com/princezzanails" target="_blank" class="knapp facebook" rel="noopener noreferrer">
+          <i class="fab fa-facebook"></i> Facebook
         </a>
       </div>
+
+      <a href="https://m.me/princezzanails" target="_blank" class="knapp messenger" style="margin-top: 2rem; display: inline-block;">
+        <i class="fab fa-facebook-messenger"></i> Kontakt meg
+      </a>
 
     </div>
 
     <div class="bildegalleri">
-      <img src="tons.jpg" alt="Negldesign 1">
-      <img src="Sommernegler.jpeg" alt="Negldesign 2">
-      <img src="Duck.png" alt="Negldesign 3">
-      <img src="examen.jpeg" alt="Negldesign 4">
-      <img src="easter.jpeg" alt="Negldesign 5">
+      <img src="tons.jpg" alt="Negldesign 1" />
+      <img src="Sommernegler.jpeg" alt="Negldesign 2" />
+      <img src="Duck.png" alt="Negldesign 3" />
+      <img src="examen.jpeg" alt="Negldesign 4" />
+      <img src="easter.jpeg" alt="Negldesign 5" />
     </div>
 
   </div>
+
+  <script>
+    // Hent siste video fra YouTube RSS via rss2json.com
+    // OBS: Kan være begrensninger / feil på rss2json siden, bruk med forsiktighet
+    const rssUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCdQQoJ28cjK3lf0RryuLmyw';
+    const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if(data.status === 'ok' && data.items && data.items.length > 0) {
+          const videoId = data.items[0].link.split('v=')[1];
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+          iframe.allowFullscreen = true;
+          iframe.title = "YouTube video player";
+
+          const videoContainer = document.getElementById('videoContainer');
+          videoContainer.innerHTML = '';
+          videoContainer.appendChild(iframe);
+        } else {
+          console.error('Fant ingen videoer i feeden');
+          document.getElementById('videoContainer').innerHTML = '<p>Kunne ikke laste video nå.</p>';
+        }
+      })
+      .catch(error => {
+        console.error('Feil ved henting av video:', error);
+        document.getElementById('videoContainer').innerHTML = '<p>Kunne ikke laste video nå.</p>';
+      });
+  </script>
 
 </body>
 </html>
